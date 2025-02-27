@@ -34,9 +34,6 @@
 </template>
 
 <script>
-definePageMeta({
-  middleware: 'auth'
-});
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -57,6 +54,5 @@ const register = async () => {
     console.error('Registration failed:', error.response.data);
   }
 }
-
 
 </script>

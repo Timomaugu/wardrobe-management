@@ -52,6 +52,8 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
+const category = ref('');
+
 const items = ref([]);
 var isLoading = false;
 
@@ -60,14 +62,14 @@ useHead({
 });
 
 const fetchItems = async () => {
-  //alert(route.query.q) 
-  // // {category: route.query.cat, query: route.query.q},
+  
   try {
     isLoading = false;
-    const { data } = await useNuxtApp().$api.get('/wardrobe-items', {
+    const { data } = await useNuxtApp().$api.post('/filter/items', {category: route.query.cat, search: route.query.q}, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     items.value = data;
+    console.log(data);
   } catch (error) {
     console.error('Error fetching wardrobe:', error.response.data);
   }

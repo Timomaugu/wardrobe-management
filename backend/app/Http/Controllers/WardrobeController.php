@@ -13,7 +13,7 @@ class WardrobeController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Item::where('user_id', 1)
+        $items = Item::where('user_id', auth()->user()->id)
             ->when($request->category, function ($query) use ($request) {
                 return $query->where('category', $request->category);
             })
@@ -96,5 +96,22 @@ class WardrobeController extends Controller
         $item->delete();
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * Filter a listing of the resource.
+     */
+    public function filter(Request $request)
+    {
+        $items = Item::where('user_id', auth()->user()->id)
+            ->when($request->category, function ($query) use ($request) {
+                $query->where('category', $request->category);
+            })
+            ->when($request->search, function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%'.$request->search.'%');
+            })
+            ->get();
+
+        return response()->json($items);
     }
 }

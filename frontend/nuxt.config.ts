@@ -35,7 +35,7 @@ export default defineNuxtConfig({
           type: 'text/javascript',
           src: 'http://127.0.0.1:3000/assets/js/bootstrap.bundle.min.js'
         }
-      ]
+      ],
     }
   },
   ssr: false,

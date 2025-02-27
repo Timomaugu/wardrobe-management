@@ -40,7 +40,6 @@ const login = async () => {
   try {
     const { data } = await useNuxtApp().$api.post('/login', { email: email.value, password: password.value });
     localStorage.setItem('token', data.token);
-    alert(localStorage.getItem('token'));
     router.push('/');
   } catch (error) {
     console.error('Login failed:', error.response.data);

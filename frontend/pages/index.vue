@@ -46,9 +46,7 @@
 </template>
 
 <script setup>
-definePageMeta({
-  middleware: 'auth'
-});
+
 import { ref, onMounted } from 'vue';
 
 const items = ref([]);

@@ -15,7 +15,9 @@ Route::get('/user', function (Request $request) {
 
 
 
-//Route::middleware('auth:sanctum')->group(function() {
+Route::middleware('auth:sanctum')->group(function() {
     Route::resource('wardrobe-items', WardrobeController::class);
-    Route::post('logout', [AuthController::class, 'logout']);
-//});
+    Route::post('filter/items', [WardrobeController::class, 'filter']);
+});
+
+Route::post('logout', [AuthController::class, 'logout']);
