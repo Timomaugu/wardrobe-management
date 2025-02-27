@@ -18,9 +18,9 @@ Copy the .env.copy to .env and update with your database credentials
 ```bash
 # artisan
 php artisan migrate
+```
 
-
-## Development Server
+## Start Development Server
 
 Start the development server on `http://localhost:8000`:
 
