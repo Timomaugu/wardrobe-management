@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -46,9 +46,9 @@ const router = useRouter();
 
 const register = async () => {
   try {
-    const { response } = await useNuxtApp().$api.post('/register', { name: name.value, email: email.value, password: password.value, password_confirmation: password_confirmation.value });
+    const response = await useNuxtApp().$api.post('/register', { name: name.value, email: email.value, password: password.value, password_confirmation: password_confirmation.value });
     localStorage.setItem('token', response.data.token);
-    console.log(response.data);
+    //console.log(response.data);
     router.push('/');
   } catch (error) {
     console.error('Registration failed:', error.response.data);

@@ -13,11 +13,7 @@ class WardrobeController extends Controller
      */
     public function index(Request $request)
     {
-        $items = Item::where('user_id', auth()->user()->id)
-            ->when($request->category, function ($query) use ($request) {
-                return $query->where('category', $request->category);
-            })
-            ->get();
+        $items = Item::where('user_id', auth()->user()->id)->get();
 
         return response()->json($items);
     }

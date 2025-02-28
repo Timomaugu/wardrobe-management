@@ -9,15 +9,15 @@
         </button>
         
         <form class="search-input d-flex" role="search">
-            <select class="form-select">
+            <select class="form-select" @change="handleSelectChange">
               <option selected>Category</option>
               <option value="tops">Tops</option>
               <option value="bottoms">Bottoms</option>
               <option value="shoes">Shoes</option>
               <option value="accessories">Accessories</option>
           </select>
-          <input class="form-control me-2" placeholder="Search" aria-label="Search">
-            <NuxtLink class="btn btn-outline-success" :to="`/search?cat=${category}&q=${query}`">Search</NuxtLink>
+          <input class="form-control me-2" placeholder="Search" aria-label="Search" @change="handleInputChange">
+            <NuxtLink class="btn btn-outline-success" :to="`/search?cat=${selectedCat.value}&q=${query}`">Search</NuxtLink>
         </form>
 
 
@@ -42,7 +42,20 @@
 </template>
 
 <script setup>
+  import { ref } from 'vue';
 
+  const selectedCat = ref({
+    category: '',
+  });
+  const handleSelectChange = async (event) => {
+    selectedCat.value = event.target.value;
+    console.log("Selected option changed:", selectedCat.value);
+  }
+
+  const handleInputChange = async (event) => {
+    selectedCat.value = event.target.value;
+    console.log("Selected option changed:", selectedCat.value);
+  }
 </script>
 
 <style>
