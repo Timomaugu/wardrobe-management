@@ -8,17 +8,18 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         
-        <form class="search-input d-flex" role="search">
-            <select class="form-select" @change="handleSelectChange">
-              <option selected>Category</option>
+        <div class="d-flex">
+            <select v-model="category" class="form-select">
+              <option value="">Category</option>
               <option value="tops">Tops</option>
               <option value="bottoms">Bottoms</option>
               <option value="shoes">Shoes</option>
               <option value="accessories">Accessories</option>
           </select>
-          <input class="form-control me-2" placeholder="Search" aria-label="Search" @change="handleInputChange">
-            <NuxtLink class="btn btn-outline-success" :to="`/search?cat=${selectedCat.value}&q=${query}`">Search</NuxtLink>
-        </form>
+          <input v-model="search" class="form-control me-2" placeholder="Search" aria-label="Search">
+            <!-- <NuxtLink class="btn btn-outline-success" :to="`/search?cat=${category}&q=${query}`">Search</NuxtLink> -->
+            <button class="btn btn-outline-success" @click="searchFilter">Search</button>
+        </div>
 
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -43,19 +44,19 @@
 
 <script setup>
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
-  const selectedCat = ref({
-    category: '',
-  });
-  const handleSelectChange = async (event) => {
-    selectedCat.value = event.target.value;
-    console.log("Selected option changed:", selectedCat.value);
+  const router = useRouter();
+
+  var category = ref("");
+  var search = ref('');
+
+  const searchFilter = async () => {
+    router.push(`/search?cat=${category.value}&q=${search.value}`);
+    category.value = '';
+    search.value = '';
   }
 
-  const handleInputChange = async (event) => {
-    selectedCat.value = event.target.value;
-    console.log("Selected option changed:", selectedCat.value);
-  }
 </script>
 
 <style>

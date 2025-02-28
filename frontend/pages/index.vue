@@ -60,11 +60,11 @@ const fetchItems = async () => {
   
   try {
     isLoading = false;
-    const { data } = await useNuxtApp().$api.get('/wardrobe-items', {
+    const response = await useNuxtApp().$api.get('/wardrobe-items', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
-    items.value = data;
-    //console.log(data);
+    items.value = response.data;
+    //console.log(response.data);
   } catch (error) {
     console.error('Error fetching wardrobe:', error.response.data);
   }
