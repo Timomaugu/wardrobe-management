@@ -11,7 +11,7 @@
               <div v-if="isLoading">
                 <Loading title="Loading"/>
               </div>
-                <div v-else>
+                <div v-else class="table-responsive">
                   <table class="table table-striped table-bordered">
                     <thead>
                       <tr>
