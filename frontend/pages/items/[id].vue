@@ -19,6 +19,7 @@
                             <option value="tops">Tops</option>
                             <option value="bottoms">Bottoms</option>
                             <option value="shoes">Shoes</option>
+                            <option value="accessories">Accessories</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -52,11 +53,6 @@
         description: '',
         image_url: '',
     });
-
-    const name = ref('');
-    const category = ref('');
-    const description = ref('');
-    const image_url = ref('');
     
     const fetchItem = async (itemId) => {
         
